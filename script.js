@@ -8,7 +8,6 @@ function getRandomInt(min, max) {
 function computerPlay() {
     let play = getRandomInt(1, 3);
     let computerSelection;
-    console.log(play);  
         if (play === 1){
                 computerSelection = "rock";}
         else if (play === 2){
