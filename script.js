@@ -1,15 +1,21 @@
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 function computerPlay() {
     let play = getRandomInt(1, 3);
     let computerSelection;
-        switch (play) {
-            case 1:
-                computerSelection = "rock";
-            case 2:
-                computerSelection = "paper";
-            case 3:
-                computerSelection = "scissors";
-            }
-            console.log(`computer plays: ${computerSelection}`);
+    console.log(play);  
+        if (play === 1){
+                computerSelection = "rock";}
+        else if (play === 2){
+                computerSelection = "paper";}
+        else {
+                computerSelection = "scissors";}
+            
     return computerSelection;
     
    
@@ -36,38 +42,61 @@ function playerSelect() {
     return play;
 }
 
+const PLAYERVICTORY = "You win!";
+const COMPUTERVICTORY = "Computer Wins!";
+const TIE = "it's a tie!"
+
 
 function playRound(playerSelection, computerSelection) {
-    if (playerSelection === computerSelection) {
-        return "It's a tie.";
+     if (playerSelection === computerSelection) {
+        return TIE;
     }
     else if (playerSelection === "rock" && computerSelection === "paper") {
-        return "Computer Wins!";
+        return COMPUTERVICTORY;
     }
     else if (playerSelection === "rock" && computerSelection === "scissors") {
-        return "You win!";
+        return PLAYERVICTORY;
     }
     else if (playerSelection === "paper" && computerSelection === "rock") {
-        return"You win!";
+        return PLAYERVICTORY;
     }
     else if (playerSelection === "paper" && computerSelection === "scissors") {
-        return "Computer Wins!";
+        return COMPUTERVICTORY;
     }
     else if (playerSelection === "scissors" && computerSelection === "rock") {
-        return "Computer Wins!";
+        return COMPUTERVICTORY;
     }
     else if (playerSelection === "scissors" && computerSelection === "paper") {
-        return "You win!";
+        return PLAYERVICTORY;
     }
 }
-const playerSelection = playerSelect();
-const computerSelection = computerPlay();
-
-console.log(playRound(playerSelection, computerSelection));
 
 
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1) + min);
+function game() {
+    let count = 5;
+    let current = 0;
+    let computerScore = 0;
+    let playerScore = 0;
+    while (current < count) {
+        playerSelection = playerSelect();
+        computerSelection = computerPlay();
+        console.log(`Round: ${current + 1}`);
+        console.log(`Computer Plays: ${computerSelection}`);
+           if (playRound(playerSelection, computerSelection) === PLAYERVICTORY) {
+            console.log(PLAYERVICTORY);
+            playerScore++;
+            current++;
+        }
+        else if (playRound(playerSelection, computerSelection) === COMPUTERVICTORY) {
+            console.log(COMPUTERVICTORY);
+            computerScore++;
+            current++;
+        }
+        else if (playRound(playerSelection, computerSelection) === TIE) {
+            console.log(TIE);
+            current++;
+        }
+    }
 }
+
+game();
