@@ -14,36 +14,76 @@ function computerPlay() {
                 computerSelection = "paper";}
         else {
                 computerSelection = "scissors";}
-            
-    return computerSelection;
-    
-   
-}
-
-function playerSelect() {
-    let selection = prompt("Insert your play")
-    selectionCase = selection.toLowerCase();
-    let play;
-    switch (selectionCase) {
-        case "rock":
-            play = "rock";
-            break;
-        case "paper":
-            play = "paper";
-            break;
-        case "scissors":
-            play = "scissors";
-            break;  
-        default:
-            console.log("Invalid input");       
-        }
-        
-    return play;
+    return computerSelection; 
 }
 
 const PLAYERVICTORY = "You win!";
 const COMPUTERVICTORY = "Computer Wins!";
 const TIE = "it's a tie!"
+
+
+let current = 0;
+let computerScore = 0;
+let playerScore = 0;
+const result = document.querySelector("#results")
+const newP = document.createElement('p');
+const roundP = document.createElement('p');
+roundP.style["textAlign"] = "center";
+roundP.style["font-size"] = "50px";
+roundP.textContent = `Round: ${current}`;
+result.appendChild(roundP);
+newP.style["textAlign"] = "center";
+newP.style["font-size"] = "50px";
+newP.textContent = `You: ${playerScore} computer: ${computerScore}`;
+result.appendChild(newP);
+
+
+const buttons = Array.from(document.querySelectorAll("button"));
+buttons.forEach(btn => btn.addEventListener("click", function playerSelection(e) {
+    
+    computerSelection = computerPlay();
+    playerPlay = e.target.id;
+    roundP.textContent = `Round: ${current + 1}`;
+    result.appendChild(roundP);
+    console.log(`Computer Plays: ${computerSelection}`);
+        if (playRound(playerPlay, computerSelection) === PLAYERVICTORY) {
+            playerScore++;
+            current++;
+            newP.textContent = `You: ${playerScore} computer: ${computerScore}`;
+            result.appendChild(newP);
+        }
+        else if (playRound(playerPlay, computerSelection) === COMPUTERVICTORY) {
+            computerScore++;
+            current++;
+            newP.textContent = `You: ${playerScore} computer: ${computerScore}`;
+            result.appendChild(newP);
+        }
+        else if (playRound(playerPlay, computerSelection) === TIE) {
+            current++;
+            console.log(TIE);
+            console.log(`You: ${playerScore} computer: ${computerScore}`);
+            result.appendChild(newP);
+        }
+
+        if (computerScore === 5) {
+            newP.textContent = "Computer has win, rematch?";
+            result.appendChild(newP);
+            current = 0;
+            computerScore = 0;
+            playerScore = 0;
+        }
+        else if (playerScore === 5) {
+            newP.textContent = "Computer has win, rematch?";
+            result.appendChild(newP);
+            current = 0;
+            computerScore = 0;
+            playerScore = 0;
+        }
+    }
+));
+
+
+
 
 
 function playRound(playerSelection, computerSelection) {
@@ -71,31 +111,5 @@ function playRound(playerSelection, computerSelection) {
 }
 
 
-function game() {
-    let count = 5;
-    let current = 0;
-    let computerScore = 0;
-    let playerScore = 0;
-    while (current < count) {
-        playerSelection = playerSelect();
-        computerSelection = computerPlay();
-        console.log(`Round: ${current + 1}`);
-        console.log(`Computer Plays: ${computerSelection}`);
-           if (playRound(playerSelection, computerSelection) === PLAYERVICTORY) {
-            console.log(PLAYERVICTORY);
-            playerScore++;
-            current++;
-        }
-        else if (playRound(playerSelection, computerSelection) === COMPUTERVICTORY) {
-            console.log(COMPUTERVICTORY);
-            computerScore++;
-            current++;
-        }
-        else if (playRound(playerSelection, computerSelection) === TIE) {
-            console.log(TIE);
-            current++;
-        }
-    }
-}
 
-game();
+    
