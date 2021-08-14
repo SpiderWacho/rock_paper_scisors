@@ -8,14 +8,18 @@ body {
 }
 
 h1 {
+    font-size: 100px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     text-align: center;
     font-size: auto;
-    text-decoration: underline;
+
 }
 
 h2 {
     text-align: center;
     font-size: auto;
+    font-size: 40px;
+    font-family:'Courier New', Courier, monospace;
     
 }
 
@@ -39,7 +43,7 @@ h2 {
 }
 
 .img-buttons:active {
-    box-shadow: 2px 2px 2px 2px black;
+    box-shadow: 0.1px 0px 0px 1px rgb(61, 61, 61);
 }
 
 button {

@@ -31,20 +31,21 @@ const roundP = document.createElement('p');
 roundP.style["textAlign"] = "center";
 roundP.style["font-size"] = "50px";
 roundP.textContent = `Round: ${current}`;
-result.appendChild(roundP);
 newP.style["textAlign"] = "center";
 newP.style["font-size"] = "50px";
-newP.textContent = `You: ${playerScore} computer: ${computerScore}`;
-result.appendChild(newP);
+
+
 
 
 const buttons = Array.from(document.querySelectorAll("button"));
 buttons.forEach(btn => btn.addEventListener("click", function playerSelection(e) {
-    
-    computerSelection = computerPlay();
-    playerPlay = e.target.id;
+    newP.textContent = `You: ${playerScore} computer: ${computerScore}`;
+    result.appendChild(newP);
     roundP.textContent = `Round: ${current + 1}`;
     result.appendChild(roundP);
+    computerSelection = computerPlay();
+    playerPlay = e.target.id;
+   
     console.log(`Computer Plays: ${computerSelection}`);
         if (playRound(playerPlay, computerSelection) === PLAYERVICTORY) {
             playerScore++;
