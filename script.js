@@ -25,67 +25,60 @@ const TIE = "it's a tie!"
 let current = 0;
 let computerScore = 0;
 let playerScore = 0;
+let previousTie = false;
 const result = document.querySelector("#results")
 const newP = document.createElement('p');
+const tieP = document.createElement('p');
 const roundP = document.createElement('p');
-roundP.style["textAlign"] = "center";
-roundP.style["font-size"] = "50px";
-roundP.textContent = `Round: ${current}`;
-newP.style["textAlign"] = "center";
-newP.style["font-size"] = "50px";
+
+result.appendChild(newP);
+result.appendChild(tieP);
+result.appendChild(roundP);
+
 
 
 
 
 const buttons = Array.from(document.querySelectorAll("button"));
 buttons.forEach(btn => btn.addEventListener("click", function playerSelection(e) {
+    if (previousTie == true) {
+        previousTie = false;
+        tieP.textContent = "";
+    }
     newP.textContent = `You: ${playerScore} computer: ${computerScore}`;
-    result.appendChild(newP);
     roundP.textContent = `Round: ${current + 1}`;
-    result.appendChild(roundP);
     computerSelection = computerPlay();
     playerPlay = e.target.id;
-   
-    console.log(`Computer Plays: ${computerSelection}`);
         if (playRound(playerPlay, computerSelection) === PLAYERVICTORY) {
             playerScore++;
             current++;
             newP.textContent = `You: ${playerScore} computer: ${computerScore}`;
-            result.appendChild(newP);
         }
         else if (playRound(playerPlay, computerSelection) === COMPUTERVICTORY) {
             computerScore++;
             current++;
             newP.textContent = `You: ${playerScore} computer: ${computerScore}`;
-            result.appendChild(newP);
         }
         else if (playRound(playerPlay, computerSelection) === TIE) {
             current++;
-            console.log(TIE);
-            console.log(`You: ${playerScore} computer: ${computerScore}`);
-            result.appendChild(newP);
+            previousTie = true;
+            tieP.textContent = "It's a tie";
         }
 
         if (computerScore === 5) {
             newP.textContent = "Computer has win, rematch?";
-            result.appendChild(newP);
             current = 0;
             computerScore = 0;
             playerScore = 0;
         }
         else if (playerScore === 5) {
-            newP.textContent = "Computer has win, rematch?";
-            result.appendChild(newP);
+            newP.textContent = "You won, rematch?";
             current = 0;
             computerScore = 0;
             playerScore = 0;
         }
     }
 ));
-
-
-
-
 
 function playRound(playerSelection, computerSelection) {
      if (playerSelection === computerSelection) {
