@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="styles.css">
 <title>
     Rock Paper Scissors
@@ -8,17 +9,23 @@
 </head>
 <body>
     <script src="script.js" defer></script>
-    <div id="title">
-        <h1>Rock, Paper and Scissors</h1>
-        <h2>Do you have what it takes to beat the computer?</h2>
+    <div class="content">
+        <div id="title">
+            <h1>Rock, Paper and Scissors</h1>
+            <h2>Do you have what it takes to beat the computer? First to reach 5 wins</h2>
+        </div>
+        <div class="game-container">
+            <div id="buttons">
+                <button type="button"  id="rock"></button>
+                <button type="button"  id="paper"></button>
+                <button type="button"  id="scissors"></button>
+            </div>
+            <div id="results">
+            </div>
+        </div>
+        <div class="footer">
+            <p id="name">© 2021 Gaston Vecchio</p>
+        </div>
     </div>
-    <div id="buttons">
-    <button type="button"  id="rock"></button>
-    <button type="button"  id="paper"></button>
-    <button type="button"  id="scissors"></button>
-</div>
-    <div id="results">
-    </div>
-    <p id="name">© 2021 Gaston Vecchio</p>
 </body>
 </html>

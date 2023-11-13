@@ -45,19 +45,19 @@ buttons.forEach(btn => btn.addEventListener("click", function playerSelection(e)
         previousTie = false;
         tieP.textContent = "";
     }
-    newP.textContent = `You: ${playerScore} computer: ${computerScore}`;
+    newP.textContent = `BO5: You: ${playerScore} computer: ${computerScore}`;
     roundP.textContent = `Round: ${current + 1}`;
     computerSelection = computerPlay();
     playerPlay = e.target.id;
         if (playRound(playerPlay, computerSelection) === PLAYERVICTORY) {
             playerScore++;
             current++;
-            newP.textContent = `You: ${playerScore} computer: ${computerScore}`;
+            newP.textContent = `BO5: You: ${playerScore} computer: ${computerScore}`;
         }
         else if (playRound(playerPlay, computerSelection) === COMPUTERVICTORY) {
             computerScore++;
             current++;
-            newP.textContent = `You: ${playerScore} computer: ${computerScore}`;
+            newP.textContent = `BO5: You: ${playerScore} computer: ${computerScore}`;
         }
         else if (playRound(playerPlay, computerSelection) === TIE) {
             current++;
